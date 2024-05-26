@@ -53,15 +53,20 @@ public class EntityEventHandler
     @SubscribeEvent
     public static void onPlayerClone(PlayerEvent.Clone event)
     {
-        event.getOriginal().revive();
+        if (!event.isWasDeath()) {
+                            
+            event.getOriginal().revive();
 
-        SpiritwebCapability.get(event.getOriginal()).ifPresent((oldSpiritWeb) ->
-                SpiritwebCapability.get(event.getPlayer()).ifPresent((newSpiritWeb) ->
-                {
-                    //copy across anything from the old player
-                    //things like eye height and attributes
-                    newSpiritWeb.transferFrom(oldSpiritWeb);
-                }));
+            SpiritwebCapability.get(event.getOriginal()).ifPresent((oldSpiritWeb) ->
+                    SpiritwebCapability.get(event.getPlayer()).ifPresent((newSpiritWeb) ->
+                    {
+                        //copy across anything from the old player
+                        //things like eye height and attributes
+
+                        newSpiritWeb.transferFrom(oldSpiritWeb);
+                    }));
+
+        }
 
     }
 
