@@ -208,41 +208,41 @@ public class HemalurgicSpikeItem extends BaseItem implements IHasMetalType, IHem
         //allow all equips
         return true;
         //do not allow players to wear two spikes of the same metal empowered by the same killed entity UUID
-        if (slotContext.entity() instanceof Player)
-        {
-            Player player = (Player)slotContext.entity();
-            final UUID stackWeWantToEquipUUID = getHemalurgicIdentity(stack);
+        // if (slotContext.entity() instanceof Player)
+        // {
+        //     Player player = (Player)slotContext.entity();
+        //     final UUID stackWeWantToEquipUUID = getHemalurgicIdentity(stack);
 
-            HemalurgicSpikeItem item = (HemalurgicSpikeItem) stack.getItem();
-            Metal stackMetal = item.getMetalType();
+        //     HemalurgicSpikeItem item = (HemalurgicSpikeItem) stack.getItem();
+        //     Metal stackMetal = item.getMetalType();
 
-            if (stackWeWantToEquipUUID != null)
-            {
-                Predicate<ItemStack> spikePredicate = stackToFind ->
-                {
-                    final boolean isSpike = stackToFind.getItem() instanceof HemalurgicSpikeItem;
+        //     if (stackWeWantToEquipUUID != null)
+        //     {
+        //         Predicate<ItemStack> spikePredicate = stackToFind ->
+        //         {
+        //             final boolean isSpike = stackToFind.getItem() instanceof HemalurgicSpikeItem;
 
-                    if (!isSpike)
-                    {
-                        return false;
-                    }
+        //             if (!isSpike)
+        //             {
+        //                 return false;
+        //             }
 
-                    final HemalurgicSpikeItem foundSpikeItem = (HemalurgicSpikeItem) stackToFind.getItem();
-                    final UUID foundSpikeUUID = getHemalurgicIdentity(stackToFind);
+        //             final HemalurgicSpikeItem foundSpikeItem = (HemalurgicSpikeItem) stackToFind.getItem();
+        //             final UUID foundSpikeUUID = getHemalurgicIdentity(stackToFind);
 
-                    final boolean matchingSpikeIdentity = foundSpikeItem.getMetalType() == metalType
-                            && foundSpikeUUID != null
-                            && foundSpikeUUID.compareTo(stackWeWantToEquipUUID) == 0;
+        //             final boolean matchingSpikeIdentity = foundSpikeItem.getMetalType() == metalType
+        //                     && foundSpikeUUID != null
+        //                     && foundSpikeUUID.compareTo(stackWeWantToEquipUUID) == 0;
 
-                    Metal testStackMetal = foundSpikeItem.getMetalType();
-                    final boolean onlyOneIronAllowed = stackMetal == Metal.IRON && stackMetal == testStackMetal;
+        //             Metal testStackMetal = foundSpikeItem.getMetalType();
+        //             final boolean onlyOneIronAllowed = stackMetal == Metal.IRON && stackMetal == testStackMetal;
 
-                    return matchingSpikeIdentity || onlyOneIronAllowed;
-                };
-                final Optional<ImmutableTriple<String, Integer, ItemStack>> curioSpike = CuriosApi.getCuriosHelper().findEquippedCurio(spikePredicate, player);
-                return curioSpike.isEmpty();
-            }
-        }
+        //             return matchingSpikeIdentity || onlyOneIronAllowed;
+        //         };
+        //         final Optional<ImmutableTriple<String, Integer, ItemStack>> curioSpike = CuriosApi.getCuriosHelper().findEquippedCurio(spikePredicate, player);
+        //         return curioSpike.isEmpty();
+        //     }
+        // }
     }
 
     @Override
