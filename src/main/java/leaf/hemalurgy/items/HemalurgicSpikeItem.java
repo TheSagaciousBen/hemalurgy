@@ -205,6 +205,8 @@ public class HemalurgicSpikeItem extends BaseItem implements IHasMetalType, IHem
     @Override
     public boolean canEquip(SlotContext slotContext, ItemStack stack)
     {
+        //allow all equips
+        return true;
         //do not allow players to wear two spikes of the same metal empowered by the same killed entity UUID
         if (slotContext.entity() instanceof Player)
         {
@@ -241,7 +243,6 @@ public class HemalurgicSpikeItem extends BaseItem implements IHasMetalType, IHem
                 return curioSpike.isEmpty();
             }
         }
-        return true;
     }
 
     @Override
